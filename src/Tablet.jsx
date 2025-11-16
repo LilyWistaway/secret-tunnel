@@ -1,6 +1,7 @@
-/** Button that attempts to use the token in context when clicked */
+import { useAuth } from "./AuthContext";
+
 export default function Tablet() {
-  // TODO: call authenticate when form is submitted
+  const { authenticate, error } = useAuth();
 
   return (
     <section>
@@ -8,17 +9,20 @@ export default function Tablet() {
         The sound of your name thuds against the gate as the two badgers furrow
         their brows. The badger on the right beckons you to approach.
       </p>
-      <p>"Only those who are pure of heart may pass."</p>
+      <p>&quot;Only those who are pure of heart may pass.&quot;</p>
       <p>
-        "Place your hand upon this stone tablet, and thus will your true self be
-        revealed."
+        &quot;Place your hand upon this stone tablet, and thus will your true
+        self be revealed.&quot;
       </p>
       <p>
         It holds out a rectangular stone tablet carved with an intricate design.
       </p>
-      <form>
+
+      <form action={authenticate}>
         <button>Place your palm upon the tablet.</button>
       </form>
+
+      {error && <p className="error">{error}</p>}
     </section>
   );
 }
